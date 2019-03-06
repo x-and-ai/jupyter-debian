@@ -3,10 +3,10 @@
 source config
 
 # Clean up old containers and images
-# source clean
+source clean
 
 # Build test image
-# docker build --tag=${TEST_IMAGE_NAME} .
+docker build --tag=${TEST_IMAGE_NAME} .
 
 # Run a test container
 JUPYTER_PORT=8888
