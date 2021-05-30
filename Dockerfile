@@ -1,18 +1,19 @@
-ARG PYTHON_DEBIAN_VERSION="1.0.0"
+ARG PYTHON_DEBIAN_VERSION="1.1.0"
 
 FROM xandai/python-debian:${PYTHON_DEBIAN_VERSION}
 
-ARG JUPYTER_VERSION="1.0.0"
+ARG JUPYTERLAB_VERSION="3.0.16"
 ARG JUPYTER_USER="jupyter"
 ARG HOME_PATH="/home/${JUPYTER_USER}"
-ARG NOTEBOOK_DIR="${HOME_PATH}/notebook"
+ARG NOTEBOOK_DIR="${HOME_PATH}/workdir"
 ARG JUPYTER_CONFIG_DIR="${HOME_PATH}/.jupyter"
 ARG JUPYTER_CONFIG_FILE="${JUPYTER_CONFIG_DIR}/jupyter_notebook_config.py"
 
 USER root
 
-RUN python -m pip install --no-cache-dir jupyter==${JUPYTER_VERSION} &&\
-    adduser --disabled-password --gecos "" ${JUPYTER_USER}
+RUN python -m pip install --no-cache-dir jupyterlab==${JUPYTERLAB_VERSION} \
+    && groupadd -r ${JUPYTER_USER} \
+    && useradd --no-log-init -m -r -g ${JUPYTER_USER} ${JUPYTER_USER}
 
 USER ${JUPYTER_USER}
 

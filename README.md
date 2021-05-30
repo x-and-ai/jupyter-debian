@@ -6,7 +6,7 @@
 
 ## Description
 
-This is a Docker image for using Jupyter Notebook on Debian.
+This is a Docker image for using Jupyter Lab on Debian.
 
 ## Tags and Versions
 
@@ -14,16 +14,20 @@ This is a Docker image for using Jupyter Notebook on Debian.
 |:----------:|:----------:|:----------:|:----------:|
 | 1.0.0      | 1.0.0      | 3.5.3-1    | 9.8        |
 
+| tag        | jupyterlab | python     | debian     |
+|:----------:|:----------:|:----------:|:----------:|
+| 1.1.0      | 3.0.16     | 3.7.3      | 10.9       |
+
 ## Usage
 
 - Start Jupyter Notebook without token
 
 ``` sh
-docker run --rm -it -p <localhostport>:8888 -v /absolute/path/to/notebook/dir:/home/jupyter/notebook xandai/jupyter-debian:1.0.0 jupyter notebook --NotebookApp.token=''
+docker run --rm -it -p <localhostport>:8888 -v /absolute/path/to/workdir:/home/jupyter/workdir xandai/jupyter-debian:1.1.0 jupyter notebook --NotebookApp.token=''
 ```
 
 - Start Jupyter Notebook with token
 
 ``` sh
-docker run --rm -it -p <localhostport>:8888 -v /absolute/path/to/notebook/dir:/home/jupyter/notebook xandai/jupyter-debian:1.0.0
+docker run --rm -it -p <localhostport>:8888 -v /absolute/path/to/workdir:/home/jupyter/workdir xandai/jupyter-debian:1.1.0
 ```
