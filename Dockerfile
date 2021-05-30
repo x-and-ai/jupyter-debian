@@ -27,4 +27,4 @@ EXPOSE 8888
 
 WORKDIR ${NOTEBOOK_DIR}
 
-CMD jupyter notebook
+CMD jupyter lab

@@ -17,17 +17,18 @@ This is a Docker image for using Jupyter Lab on Debian.
 | tag        | jupyterlab | python     | debian     |
 |:----------:|:----------:|:----------:|:----------:|
 | 1.1.0      | 3.0.16     | 3.7.3      | 10.9       |
+| 1.1.1      | 3.0.16     | 3.7.3      | 10.9       |
 
 ## Usage
 
-- Start Jupyter Notebook without token
+- Start Jupyter Lab without token
 
 ``` sh
-docker run --rm -it -p <localhostport>:8888 -v /absolute/path/to/workdir:/home/jupyter/workdir xandai/jupyter-debian:1.1.0 jupyter notebook --NotebookApp.token=''
+docker run --rm -it -p <localhostport>:8888 -v /absolute/path/to/workdir:/home/jupyter/workdir xandai/jupyter-debian:1.1.1 jupyter lab --NotebookApp.token=''
 ```
 
-- Start Jupyter Notebook with token
+- Start Jupyter Lab with token
 
 ``` sh
-docker run --rm -it -p <localhostport>:8888 -v /absolute/path/to/workdir:/home/jupyter/workdir xandai/jupyter-debian:1.1.0
+docker run --rm -it -p <localhostport>:8888 -v /absolute/path/to/workdir:/home/jupyter/workdir xandai/jupyter-debian:1.1.1
 ```
