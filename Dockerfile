@@ -1,4 +1,4 @@
-ARG PYTHON_DEBIAN_VERSION="1.1.0"
+ARG PYTHON_DEBIAN_VERSION="1.1.1"
 
 FROM xandai/python-debian:${PYTHON_DEBIAN_VERSION}
 
@@ -11,7 +11,13 @@ ARG JUPYTER_CONFIG_FILE="${JUPYTER_CONFIG_DIR}/jupyter_notebook_config.py"
 
 USER root
 
-RUN python -m pip install --no-cache-dir jupyterlab==${JUPYTERLAB_VERSION} \
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends curl \
+    && curl -fsSL https://deb.nodesource.com/setup_14.x | bash - \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends nodejs \
+    && rm -rf /var/lib/apt/lists/* \
+    && python3 -m pip install --no-cache-dir jupyterlab==${JUPYTERLAB_VERSION} \
     && groupadd -r ${JUPYTER_USER} \
     && useradd --no-log-init -m -r -g ${JUPYTER_USER} ${JUPYTER_USER}
 
@@ -19,9 +25,9 @@ USER ${JUPYTER_USER}
 
 RUN mkdir -p ${NOTEBOOK_DIR} &&\
     mkdir -p ${JUPYTER_CONFIG_DIR} &&\
-    echo "c.NotebookApp.ip = '0.0.0.0'" >> ${JUPYTER_CONFIG_FILE} &&\
-    echo "c.NotebookApp.open_browser = False" >> ${JUPYTER_CONFIG_FILE} &&\
-    echo "c.NotebookApp.notebook_dir = '${NOTEBOOK_DIR}'" >> ${JUPYTER_CONFIG_FILE}
+    echo "c.ServerApp.ip = '0.0.0.0'" >> ${JUPYTER_CONFIG_FILE} &&\
+    echo "c.ServerApp.open_browser = False" >> ${JUPYTER_CONFIG_FILE} &&\
+    echo "c.ServerApp.root_dir = '${NOTEBOOK_DIR}'" >> ${JUPYTER_CONFIG_FILE}
 
 EXPOSE 8888
 
