@@ -2,7 +2,11 @@ ARG PYTHON_DEBIAN_VERSION="1.1.1"
 
 FROM xandai/python-debian:${PYTHON_DEBIAN_VERSION}
 
+ARG NUMPY_VERSION="1.20.3"
+ARG MATPLOTLIB_VERSION="3.4.2"
 ARG JUPYTERLAB_VERSION="3.0.16"
+ARG PIP_PACKAGES="numpy==${NUMPY_VERSION} matplotlib==${MATPLOTLIB_VERSION} jupyterlab==${JUPYTERLAB_VERSION}"
+
 ARG JUPYTER_USER="jupyter"
 ARG HOME_PATH="/home/${JUPYTER_USER}"
 ARG NOTEBOOK_DIR="${HOME_PATH}/workdir"
@@ -17,7 +21,7 @@ RUN apt-get update \
     && apt-get update \
     && apt-get install -y --no-install-recommends nodejs \
     && rm -rf /var/lib/apt/lists/* \
-    && python3 -m pip install --no-cache-dir jupyterlab==${JUPYTERLAB_VERSION} \
+    && python3 -m pip install --no-cache-dir ${PIP_PACKAGES} \
     && groupadd -r ${JUPYTER_USER} \
     && useradd --no-log-init -m -r -g ${JUPYTER_USER} ${JUPYTER_USER}
 
