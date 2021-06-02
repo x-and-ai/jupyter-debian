@@ -12,6 +12,7 @@ This is a Docker image for using Jupyter Lab on Debian.
 
 |  tag  | jupyterlab | matplotlib | numpy  | nodejs  | python | debian |
 | :---: | :--------: | :--------: | :----: | :-----: | :----: | :----: |
+| 1.1.5 |   3.0.16   |   3.4.2    | 1.20.3 | 14.17.0 | 3.7.3  |  10.9  |
 | 1.1.4 |   3.0.16   |   3.4.2    | 1.20.3 | 14.17.0 | 3.7.3  |  10.9  |
 | 1.1.3 |   3.0.16   |   3.4.2    | 1.20.3 | 14.17.0 | 3.7.3  |  10.9  |
 
@@ -33,11 +34,11 @@ This is a Docker image for using Jupyter Lab on Debian.
 - Start Jupyter Lab without token
 
 ```sh
-docker run --rm -it -p <localhostport>:8888 -v /absolute/path/to/workdir:/home/jupyter/workdir xandai/jupyter-debian:1.1.4 jupyter lab --NotebookApp.token=''
+docker run --rm -it -p <localhostport>:8888 -v /absolute/path/to/workdir:/home/jupyter/workdir xandai/jupyter-debian:1.1.5 jupyter lab --NotebookApp.token=''
 ```
 
 - Start Jupyter Lab with token
 
 ```sh
-docker run --rm -it -p <localhostport>:8888 -v /absolute/path/to/workdir:/home/jupyter/workdir xandai/jupyter-debian:1.1.4
+docker run --rm -it -p <localhostport>:8888 -v /absolute/path/to/workdir:/home/jupyter/workdir xandai/jupyter-debian:1.1.5
 ```
